@@ -17,7 +17,7 @@ import {
 export const listSectionDetails = (urlname) => async (dispatch) => {
   try {
     dispatch({ type: "SECTION_DETAILS_REQUEST" });
-    const { data } = await axios.get(`http://localhost:5000/api/sections/${urlname}`);
+    const { data } = await axios.get(`https://medicalprojectnet.herokuapp.com/api/sections/${urlname}`);
     dispatch({ type: "SECTION_DETAILS_SUCCESS", payload: data });
     console.log(data);
   } catch (error) {

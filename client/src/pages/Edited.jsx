@@ -52,7 +52,7 @@ const update = useSelector((state) => state.update);
       let img = e.target.files[0];
       const data = new FormData();
       data.append("file", img);
-      axios.post("http://localhost:5000/image", data).then((res) => {
+      axios.post("https://medicalprojectnet.herokuapp.com/image", data).then((res) => {
         if (res.status == 200)
           dispatch(
             updateUserProfile({ photo: img.name, _id: mydata?.userInfo?._id })
