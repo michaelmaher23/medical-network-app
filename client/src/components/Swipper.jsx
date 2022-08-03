@@ -100,10 +100,10 @@ export const Swipper = () => {
                 borderLeft: isActive ? "9px solid var(--main2)" : "",
               }}
             >
-              <Link to="field">
+           
                 {" "}
                 <img alt=''  src={pic7} style={{ display: "block" }} />
-              </Link>
+     
             </Card>
           )}
         </SwiperSlide>
@@ -116,10 +116,10 @@ export const Swipper = () => {
                 borderLeft: isActive ? "9px solid var(--main2)" : "",
               }}
             >
-              <Link to="R">
+        
                 {" "}
                 <img alt=''  src={e} style={{ display: "block" }} />
-              </Link>
+          
             </Card>
           )}
         </SwiperSlide>
@@ -131,10 +131,10 @@ export const Swipper = () => {
                 borderLeft: isActive ? "9px solid var(--main2)" : "",
               }}
             >
-              <Link to="medproducts">
+               
                 {" "}
                 <img alt=''  src={Capture8} style={{ display: "block" }} />
-              </Link>
+        
             </Card>
           )}
         </SwiperSlide>

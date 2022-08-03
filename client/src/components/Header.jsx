@@ -5,6 +5,10 @@ import { Link } from "react-router-dom";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import LoginIcon from "@mui/icons-material/Login";
 import SimpleDrawer from "./SimpleDrawer";
+import { HashLink } from "react-router-hash-link";
+import { useDispatch, useSelector } from "react-redux";
+import icon99 from "./icon99.webp";
+import { getUserDetails, logout } from "../Redux/Actions/UserAction";
 export default function Header() {
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -22,7 +26,9 @@ export default function Header() {
       setLastScrollY(window.scrollY);
     }
   };
- 
+  const mydata = useSelector((state) => state.userDetails);
+  const me = useSelector((state) => state.userLogin);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       window.addEventListener("scroll", controlNavbar);
@@ -33,83 +39,116 @@ export default function Header() {
       };
     }
   }, [lastScrollY]);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (me?.userInfo?._id) dispatch(getUserDetails(me?.userInfo?._id));
+  }, [me?.userInfo?._id]);
+ const Logout=(e)=>{
+  e.preventDefault();
+  dispatch(logout(me?.userInfo?._id))
+ }
+  return (
+    <>
+      <SimpleDrawer />
+      <Main show={show}>
+        <div>
+          <Link to="/medproducts">
+            <Logo src={logo} alt="michael" />
+          </Link>
+        </div>
+        <Links>
+          <Linkat to="/medproducts">
+            <p> Products</p>
+          </Linkat>
 
-  return (<>
-    <SimpleDrawer/>
-    <Main show={show}>
-      <div>
-        <Link to="/">
-          <Logo src={logo} alt="michael" />
-        </Link>
-      </div>
-      <Links>
-        <Linkat to="/">
-          <p>Heart Care</p>
-        </Linkat>
-        <Linkat to="/">
-          <p>Neuro system</p>
-        </Linkat>
+          <LinkA to="/#sec77">Fields</LinkA>
 
-        <Drop>
-          {" "}
-          <p     style={{marginBottom: 0,
- }}> &nbsp;&nbsp;&nbsp;&nbsp;Studies</p>
-          <ArrowDropDownIcon style={{ display: "inline" }} />
-          <div className="div1">
-            <Link to="/field" style={{ textDecoration: "none" }}>
+          <Drop>
+            <p style={{ marginBottom: 0 }}> &nbsp;&nbsp;&nbsp;&nbsp;Studies</p>
+            <ArrowDropDownIcon style={{ display: "inline" }} />
+            <div className="div1">
+              <Link to="/Field/Lungs" style={{ textDecoration: "none" }}>
+                {" "}
+                <h4 className="item">Lung Diseases</h4>
+              </Link>
+              <Link to="/Field/Kidneys" style={{ textDecoration: "none" }}>
+                {" "}
+                <h4 className="item">Kidney Conditions</h4>
+              </Link>
+              <Link
+                to="/Field/Mental_Health"
+                style={{ textDecoration: "none" }}
+              >
+                {" "}
+                <h4 className="item">Mental Illness</h4>
+              </Link>
+              <Link to="/Field/Eyes" style={{ textDecoration: "none" }}>
+                {" "}
+                <h4 className="item">Eyes</h4>
+              </Link>
+              <Link to="/Field/Corona" style={{ textDecoration: "none" }}>
+                {" "}
+                <h4 className="item">Corona</h4>
+              </Link>
+              <Link to="/Field/Studies" style={{ textDecoration: "none" }}>
+                {" "}
+                <h4 className="item">Studies</h4>
+              </Link>
+              <Link to="/Field/Heart" style={{ textDecoration: "none" }}>
+                {" "}
+                <h4 className="item">Heart Problems</h4>
+              </Link>
+            </div>
+          </Drop>
+        </Links>
+        {mydata && mydata?.user?.email ? (
+         
+         <div className="tooltip77"><span className="tooltiptext77"><button style={{border:'none',outline:'none',color:'brown',fontWeight:'900', backgroundColor:"transparent"}}  onClick={(e)=>Logout(e)}>SignOut</button></span><div>
+            {" "}
+            <img
+              style={{
+                width: "2rem",
+                borderRadius: "50%",
+                position: "relative",
+              }}
+              src={mydata.user?.photo ? mydata?.user?.photo : icon99}
+            />{" "}
+            <span
+              style={{ color: "brown", fontWeight: "800", fontSize: "1rem" }}
+            >
               {" "}
-              <h4 className="item">Lung Diseases</h4>
+              @{(mydata?.user?.email).split("@")[0]}
+            </span>
+          </div></div>
+        ) : (
+          <Btns>
+            <Link style={{ textDecoration: "none" }} to="/signup">
+              <Button
+                background={"white"}
+                textcolor={"var(--main)"}
+                width={"4rem"}
+                height={"1.9rem"}
+              >
+                Sign up
+              </Button>
             </Link>
-            <Link to="/" style={{ textDecoration: "none" }}>
-              {" "}
-              <h4 className="item">Kidney conditions</h4>
+            <Link style={{ textDecoration: "none" }} to="/login">
+              <Button
+                background={"var(--main2)"}
+                textcolor={"var(--main)"}
+                width={"4rem"}
+                height={"1.9rem"}
+              >
+                Log in
+              </Button>
             </Link>
-            <Link to="/" style={{ textDecoration: "none" }}>
-              {" "}
-              <h4 className="item">Mental Illness</h4>
-            </Link>
-            <Link to="/" style={{ textDecoration: "none" }}>
-              {" "}
-              <h4 className="item">Lung Diseases</h4>
-            </Link>
-            <Link to="/" style={{ textDecoration: "none" }}>
-              {" "}
-              <h4 className="item">Lungs</h4>
-            </Link>
-            <Link to="/" style={{ textDecoration: "none" }}>
-              {" "}
-              <h4 className="item">Mental Illness</h4>
-            </Link>
-          </div>
-        </Drop>
-      </Links>
-      <Btns>
-        <Link style={{ textDecoration: "none" }} to="/signup">
-          <Button
-            background={"white"}
-            textcolor={"var(--main)"}
-            width={"4rem"}
-            height={"1.9rem"}
-          >
-            Sign up
-          </Button>
-        </Link>
-        <Link style={{ textDecoration: "none" }} to="/login">
-          <Button
-            background={"var(--main2)"}
-            textcolor={"var(--main)"}
-            width={"4rem"}
-            height={"1.9rem"}
-          >
-            Log in
-          </Button>
-        </Link>
-      </Btns>
-  
-    </Main></>
+          </Btns>
+        )}
+      </Main>
+    </>
   );
 }
- 
+
 const Logo = styled.img`
   height: 36px;
   margin-left: 2rem;
@@ -129,7 +168,7 @@ const Button = styled.button`
   outline: none;
   margin-right: 1rem;
   border-radius: 4px;
-  font-size:1rem;
+  font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
   :hover {
@@ -141,8 +180,8 @@ const Button = styled.button`
 
   display: block;
   margin: auto;
-  @media(max-width:700px){
-    font-size:14px;
+  @media (max-width: 700px) {
+    font-size: 14px;
   }
 `;
 const Linkat = styled(Link)`
@@ -165,7 +204,7 @@ const Linkat = styled(Link)`
   }
   p {
     text-decoration: none;
-margin-bottom: 0;
+    margin-bottom: 0;
 
     font-weight: 600;
     letter-spacing: 1px;
@@ -174,43 +213,42 @@ margin-bottom: 0;
 `;
 const Drop = styled.div`
   position: relative;
-  flex-direction:row;
-  display: flex; 
+  flex-direction: row;
+  display: flex;
   align-items: center;
   color: var(--main);
   font-weight: 700;
 
-  .div1 {   
-
+  .div1 {
     opacity: 0;
     position: absolute;
     display: none;
-   
   }
-  :hover { 
-       
-    .div1 {display: flex; 
-    flex-direction:row;
-   
-     flex-wrap:wrap;
-     justify-content:space-around;
+  :hover {
+    .div1 {
+      display: flex;
+      flex-direction: row;
+
+      flex-wrap: wrap;
+      justify-content: space-around;
       transition: opacity 0.8s linear;
       opacity: 1;
       top: 102%;
-      width:300%;
+      width: 300%;
       background-color: white;
       padding: 1rem;
       border-bottom-left-radius: 25px;
-      border-bottom:2px solid pink;
-      .item { margin-top: .2rem;
-        flex:33.3%;
-        width:100%;
-        text-align:left;
-       box-shadow:1px 2px 10px pink;
-        
+      border-bottom: 2px solid pink;
+      .item {
+        margin-top: 0.2rem;
+        flex: 33.3%;
+        width: 100%;
+        text-align: left;
+        box-shadow: 1px 2px 10px pink;
+
         color: var(--main);
-        padding:  .5rem 0.6rem;
-        font-weight:700;
+        padding: 0.5rem 0.6rem;
+        font-weight: 700;
         border-radius: 25px;
       }
     }
@@ -226,6 +264,32 @@ const Links = styled.div`
     display: none;
   }
 `;
+const LinkA = styled(HashLink)`
+  min-height: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--main);
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+
+  :hover {
+    background-color: rgba(241, 179, 165, 0.6);
+
+    font-weight: 600;
+
+    color: var(--main);
+  }
+
+  text-decoration: none;
+  margin-bottom: 0;
+
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 1em;
+`;
+
 const Main = styled.div`
   * {
     font-size: 0.9rem;
@@ -239,7 +303,7 @@ const Main = styled.div`
   position: fixed;
   top: ${(props) => (props.show ? "0px" : "-3.2rem")};
   transition: 0.4s ease;
-  transition-delay: .1s;
+  transition-delay: 0.1s;
 
   z-index: 30;
   background-color: white;

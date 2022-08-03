@@ -2,8 +2,10 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Button } from "./Header";
 import LOGOO from "../images/LOGOO.svg";
+import portf from "./portf.jpg"
 import Main from "../images/Main.svg";
 import gsap from "gsap";
+import { Link } from "react-router-dom";
  function MyBanner() {
   useEffect(()=>{
     var tl = gsap.timeline({
@@ -21,7 +23,7 @@ import gsap from "gsap";
     <div>
       <Banner>
         <BannerLeft>
-         <img alt='' src={LOGOO}/> 
+         <img alt='' style={{borderTopRightRadius:'10%',filter:"brightness(104%)" ,border:'1px solid #b5ab38', borderTopLeftRadius:'50%',borderBottomRightRadius:'20%'}} src={portf}/> 
 
 
          
@@ -29,6 +31,8 @@ import gsap from "gsap";
         </BannerLeft>
         <BannerRight>
           <img alt=''   id="r"    src={Main} />
+          <Link style={{textDecoration:'none'}} to={`/signup`}>
+          
           <Button
             background={"var(--main2)"}
             textcolor={"var(--main)"}
@@ -38,8 +42,7 @@ import gsap from "gsap";
            
           >
             Join The Community Now
-
-          </Button>
+          </Button></Link>
          </BannerRight>
       </Banner>
     </div>

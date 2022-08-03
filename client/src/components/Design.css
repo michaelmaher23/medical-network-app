@@ -130,23 +130,26 @@ body{
 
 }
 .formstyle {
-  max-width: 80%;
+  max-width: 90%;
   margin: 3rem auto;
   position: relative;
 }
 
 .input-group {
   position: relative;
+  padding-right: 0;
 }
 
-.label {
+.mylabel {
   position: absolute;
-  right: 3%;
+  right: 0%;
   top: 50%;
   transform: translatey(-50%);
   color: #24a27c;
   transition: all 0.2s ease;
   border-radius: 9px;
+  margin-right: 0;
+  width: 2rem;
 }
 
 .inputstyle {
@@ -198,11 +201,12 @@ input:focus + label {
 
   .input-group {
     position: relative;
+    padding-right: 0;
   }
 
-  label {
+  .mylabel {
     position: absolute;
-    right: 4%;
+    right: 0%;
     top: 50%;
     transform: translatey(-50%);
     color: #24a27c;

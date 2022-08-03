@@ -6,11 +6,9 @@ const userschema = mongoose.Schema(
   {
     firstName: {
       type: String,
-      require: true,
     },
     lastName: {
       type: String,
-      require: true,
     },
     email: {
       type: String,
@@ -36,25 +34,25 @@ const userschema = mongoose.Schema(
   
       
     },
+    isAdmin:{
+      type: Boolean,
+      default:true,
+    
+    },
     address: {
       type: String,
       minLength: 4,
       default:"No address"
     },
-    country: {
-      type: String,
-      minLength: 2,
-      default:'No country'
-    },
-    region: {
-      type: String,
-
-      minLength: 1,
-      default:'No Region'
-    },
+   
     msgs:{
       type:Array,
       default:["start"]
+    }
+    ,
+    rf_Token:{
+      type:String,
+      
     }
   },
   {

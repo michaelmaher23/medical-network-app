@@ -1,11 +1,10 @@
 const mongoose=require("mongoose") ;
  const emailSchema = mongoose.Schema(
   {
-    email: {
+    email:{
       type: String,
       require: true,
     },
- 
   },
   {
     timestamps: true,

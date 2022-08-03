@@ -90,8 +90,7 @@ function MedicalProducts() {
     <div
       style={{ backgroundColor: "#fafafa", width: "100vw", overflow: "hidden" }}
     >
-      <NavBAR funct={funct} setR={setR} pro={productList} />
-      <Categories />
+   
       {productDetails.loading ? (
         <div style={{ width: "fit-conetent", margin: "auto" }}>
           <div
@@ -126,63 +125,10 @@ function MedicalProducts() {
       )}
       <Description product={productDetails} />
       <Comments product={productDetails} />
-      <Divider height={"3rem"} />
-      <div
-        ref={myRe}
-        style={{
-          width: "fit-content",
-          margin: "auto",
-          textAlign: "center",
-          borderBottom: "4px solid rgb(31, 164, 124)",
-        }}
-      >
-        <Divider height={"3rem"} />
-
-        <Title Font="21px" mobile={false} color="Black" title="Products" />
-      </div>
-      <Divider height={"2rem"} />
-      <div
-        className="grid"
-        style={{ width: "94vw", margin: "auto", display: "grid" }}
-      >
-        {loading ?
-         (
-          <div style={{ width: "fit-conetent", margin: "auto" }}>
-            <div
-              style={{
-                width: "fit-content",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                padding: "6rem 0",
-                margin: "auto",
-              }}
-            >
-              <Grid fill="#6bac6b" style={{ color: "gray" }} />
-            </div>
-          </div>
-        ) 
-        
-        
-        : error ? (
-          <>Error</>
-        ) : (
-          <>
-            {keyword !== "" && r == "start"
-              ? products?.products?.map((i) => (
-                  <ProductCard key={i} product={i} />
-                ))
-              : products?.productss?.map((i) => (
-                  <ProductCard key={i} product={i} />
-                ))}
-          </>
-        )}
-      </div>
-      <Divider height={"3rem"} />
-      <Divider height={"3rem"} />
-      <Subs />
-      <Divider height={"3rem"} />
-      <Footer /><Cart T={8}/>
+   
+      
+   
+     <Cart T={8}/>
     </div>
   );
 }

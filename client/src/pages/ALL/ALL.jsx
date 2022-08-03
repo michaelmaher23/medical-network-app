@@ -6,6 +6,7 @@ import Antd from "./Carousol/Antd";
 import { Carasoularticle } from "./Carasoularticle";
 import Footer from "./Footer";
 import { useMediaQuery } from "react-responsive";
+import { Link } from "react-router-dom";
 function ALL({ onClick, onClick2 }) {
   const issmall = useMediaQuery({ query: "(min-width: 1000px)" });
 
@@ -44,8 +45,10 @@ function ALL({ onClick, onClick2 }) {
             justifyContent: "flex-start",
           }}
         >
-          <button className="btnheader">Who we are?</button>
-          <button className="btnheader"> Start Sharing</button>
+          <Link to="/MedLandingPage" style={{textDecoration:'none'}}>
+          <button className="btnheader">Who we are?</button></Link>
+          <Link to="/MedProducts" style={{textDecoration:'none'}}>
+          <button className="btnheader"> Our Products</button></Link>
         </div>
       </div>
       <div

@@ -1,9 +1,4 @@
-import React from 'react';
-
-
-
-
-
+import React from "react";
 
 import PhoneInput from "react-phone-input-2";
 
@@ -11,18 +6,15 @@ import {
   Button,
   FormControl,
   FormHelperText,
-  
   IconButton,
   InputAdornment,
   InputBase,
   InputLabel,
-
   styled,
- 
   Typography,
 } from "@mui/material";
-import "./stylee.css"
-import {  useState } from "react";
+import "./stylee.css";
+import { useState } from "react";
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "label + &": {
@@ -74,7 +66,15 @@ export const renderText = ({ type, label, color, ...rest }) => (
   </>
 );
 
-export const renderInputField = ({ name, label, type,icon, f, state, onChange }) => {
+export const renderInputField = ({
+  name,
+  label,
+  type,
+  icon,
+  f,
+  state,
+  onChange,
+}) => {
   const { data, errors } = state;
 
   return (
@@ -113,25 +113,32 @@ export const renderInputField = ({ name, label, type,icon, f, state, onChange })
     </>
   );
 };
- export const RenderSelectCountries = ({ name, label, options,icon, state, onChange }) => {
- const [s,setS] = useState({ country: '', region: '' }) 
- const selectCountry= (val)=> {
+export const RenderSelectCountries = ({
+  name,
+  label,
+  options,
+  icon,
+  state,
+  onChange,
+}) => {
+  const [s, setS] = useState({ country: "", region: "" });
+  const selectCountry = (val) => {
     setS({ country: val });
-  }
+  };
 
-   const selectRegion =(val)=> {
-    setS({ ...s,region: val });
-  }
+  const selectRegion = (val) => {
+    setS({ ...s, region: val });
+  };
 
-  
   const { data, errors } = state;
- 
 
   return (
     <>
       {" "}
-      <FormControl name={name}     value={s}
-            onChange={onChange}
+      <FormControl
+        name={name}
+        value={s}
+        onChange={onChange}
         fullWidth={true}
         error={errors[name] ? true : false}
         sx={{
@@ -146,14 +153,48 @@ export const renderInputField = ({ name, label, type,icon, f, state, onChange })
         <InputLabel color="success" id="demo-simple-select-label" shrink>
           {label}
         </InputLabel>
-        <div  
+        <div
           style={{ display: "flex", flexDirection: "row", marginTop: "17px" }}
         >
-          <IconButton edge="end">
-        {icon}
-          </IconButton>
-    {/*
+          <IconButton edge="end">{icon}</IconButton>
+       
+          <BootstrapInput
+            name={"country"}
+            style={{
+              fontSize: "13px",
+              marginLeft: "6px",
+              width: "50%",
+              height: "2rem",
+              borderRadius: "4px",
+              border: "1px solid #e1e1e1",
+              outline: "none",
+            }}
+            value={s.country}
+            onChange={(e) => {
+              selectCountry(e.target.value);
+              onChange(e);
+            }}
+          />
+  <BootstrapInput
+
+style={{
+  fontSize: "13px",
+  marginLeft: "10%",
+  width: "45%",
+  height: "2rem",
+  borderRadius: "4px",
+  border: "1px solid #e1e1e1",
+  outline: "none",
+}}
+name={"region"}
+ 
+          value={s.region}
+onChange={(e) => {selectRegion(e.target.value);  onChange(e)} } />
+          {/*
        <div style={{display:'flex',width:'100%'}}>
+
+
+       
         <CountryDropdown
 
 name={"country"}     
@@ -170,7 +211,7 @@ name={"country"}
 
 
           value={s.country}
-          onChange={(val,e) => {selectCountry(val);  onChange(e)} } />
+          onChange={(e) => {selectCountry(e.target.value);  onChange(e)} } />
         <RegionDropdown
 
 style={{
@@ -191,15 +232,21 @@ onChange={(val,e) => {selectRegion(val);  onChange(e)} } />
       </div>
     
     
-    */}   
+    */}
         </div>
 
-        <FormHelperText style={{color:'#783737'}}>{errors["region"] ?<p  style={{color:'#d32f2f'}} > من فضلك ادخل البلد و المحافظة</p>: ""}</FormHelperText>
+        <FormHelperText style={{ color: "#783737" }}>
+          {errors["region"] ? (
+            <p style={{ color: "#d32f2f" }}> من فضلك ادخل البلد و المحافظة</p>
+          ) : (
+            ""
+          )}
+        </FormHelperText>
       </FormControl>
     </>
   );
 };
-const RenderSelect = ({ name, label, options,icon, state, onChange }) => {
+const RenderSelect = ({ name, label, options, icon, state, onChange }) => {
   const { data, errors } = state;
   const [x, setX] = useState();
   return (
@@ -223,9 +270,7 @@ const RenderSelect = ({ name, label, options,icon, state, onChange }) => {
         <div
           style={{ display: "flex", flexDirection: "row", marginTop: "17px" }}
         >
-          <IconButton edge="end">
-        {icon}
-          </IconButton>
+          <IconButton edge="end">{icon}</IconButton>
           <select
             style={{
               fontSize: "13px",
@@ -259,7 +304,7 @@ export const RenderSelectPhone = ({
   options,
   state,
   onChange,
-  icon
+  icon,
 }) => {
   const { data, errors } = state;
   const [x, setX] = useState("02");
@@ -285,8 +330,7 @@ export const RenderSelectPhone = ({
         <div
           style={{ display: "flex", flexDirection: "row", marginTop: "17px" }}
         >
-          <IconButton edge="end">
-{icon}          </IconButton>
+          <IconButton edge="end">{icon} </IconButton>
           <PhoneInput
             inputProps={{
               name: name,

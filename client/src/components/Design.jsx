@@ -87,9 +87,9 @@ function Design() {
               placeholder="Search..."
               autocomplete="off"
             />
-            <label className="label" for="search">
-              <FontAwesomeIcon style={{ fontSize: "1.2rem" }} icon={faSearch} />
-            </label>
+           
+              <FontAwesomeIcon className="mylabel" style={{ fontSize: "1.2rem" }} icon={faSearch} />
+           
           </div>
 
           <div class="suggestion-list hidden"></div>

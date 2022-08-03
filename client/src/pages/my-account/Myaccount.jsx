@@ -39,7 +39,7 @@ dispatch(social({
         firstName : error?.customData?._tokenResponse?.displayName?.split(" ")[0],
         type:'social'
       }))
-
+      
 
       }
       
@@ -52,7 +52,7 @@ dispatch(social({
 
   }
 
-
+window.location.reload()
 
 }
 
@@ -76,12 +76,16 @@ try{
   var credential = result.credential;
   
   var user = result.user;
+
+  
 dispatch(social({
   email:user?.email,
-  lastName:user?.displayName?.split(" ")?.[1],
+  lastName: user?.displayName?.split(" ")?.[1],
   firstName : user?.displayName?.split(" ")?.[0],
   type:'social'
 }))
+
+
 }).catch((error) => {
   console.log(error)
  
@@ -95,7 +99,10 @@ dispatch(social({
 }catch(err){
   console.log(err)
 }
+
+
    }
+
   const mydata = useSelector((state) => state.userLogin);
   const { Forms, loading, error } = useSelector((state) => state.forms);
   const orders55= useSelector((state) => state.forms);
@@ -133,7 +140,7 @@ dispatch(social({
 
 
 
-      {mydata && !mydata?.userInfo && !orders ? (
+      {mydata && !mydata?.userInfo?.token && !orders ? (
         <>
           <div
             style={{
@@ -502,7 +509,7 @@ dispatch(social({
                 
                 onClick={(e) => {
                   dispatch(logout());
-                  window.location.reload()
+            
                  }}
               >
                 LOGOUT

@@ -15,6 +15,9 @@ import {
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import m from "../images/m.png";
+import { useDispatch, useSelector } from "react-redux";
+import {register as reg} from "../../src/Redux/Actions/UserAction.js";
+import { Message } from "./my-account/Register";
 const schema = yup
   .object({
     email: yup.string().email().required(),
@@ -80,6 +83,7 @@ const BOX = styled(Box)(({ theme }) => ({
   },
 }));
 function Auth() {
+  const mydata2 = useSelector((state) => state.userRegister);
   const [valuesmain, setValuesmain] = useState("");
 
   const location = useLocation();
@@ -120,9 +124,14 @@ function Auth() {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
+const dispatch = useDispatch();   
   const onSubmit = (data) => {
     console.log(data);
+    
+ 
+    dispatch(reg({...data,type:"user"}));
+
+
   };
 
   return (
@@ -235,7 +244,7 @@ function Auth() {
                 )
               }
             />
-
+ {mydata2?.error && <Message>{mydata2.error}</Message>}
             <Button
               type="submit"
               sx={{
@@ -326,7 +335,10 @@ function Auth() {
             >
               Submit
             </Button>
-          </form>
+        
+
+          </form> 
+          
         </>
       )}
     </BOX>

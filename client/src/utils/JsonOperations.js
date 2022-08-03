@@ -52,7 +52,7 @@ async function Post (URL, data1) {
 
 async function Delete(URL) {
   try {
-    fetch("https://medicalprojectnet.herokuapp.com/api/prods/postemail", {
+    fetch("http://localhost:5000/api/prods/postemail", {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",

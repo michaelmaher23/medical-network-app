@@ -60,16 +60,44 @@ import {
         return state;
     }
   };
-  
+  export const formDetailsReducer = (state = { user: {} }, action) => {
+    switch (action.type) {
+      case "FORM_DETAILS_REQUEST":
+        return { ...state, loading: true };
+      case "FORM_DETAILS_SUCCESS":
+        return { loading: false, form: action.payload };
+      case "FORM_DETAILS_FAIL":
+        return { loading: false, error: action.payload };
+      case USER_DETAILS_RESET:
+        return { user: {}};
+      default:
+        return state;
+    }
+  };
   // UPDATE PROFILE
   export const userUpdateProfileReducer = (state = {sucess:false}, action) => {
     switch (action.type) {
       case USER_UPDATE_PROFILE_REQUEST:
-        return { loading: true,success:false };
+        return { loading: true };
       case USER_UPDATE_PROFILE_SUCCESS:
-        return { loading: false, success: true, userInfo: action.payload };
+
+        return { loading: false, user: action.payload };
       case USER_UPDATE_PROFILE_FAIL:
-        return { loading: false,sucess:false, error: action.payload };
+        return { loading: false,  error: action.payload };
+      default:
+        return state;
+    }
+  };
+
+  export const userUpdateFormReducer = (state = {sucess:false}, action) => {
+    switch (action.type) {
+      case "USER_UPDATE_Form_REQUEST":
+        return { loading: true };
+      case "USER_UPDATE_Form_SUCCESS":
+
+        return { loading: false, user: action.payload };
+      case "USER_UPDATE_Form_FAIL":
+        return { loading: false,  error: action.payload };
       default:
         return state;
     }

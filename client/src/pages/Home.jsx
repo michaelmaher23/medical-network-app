@@ -10,6 +10,7 @@ import AnimaGasp from "./AnimaGasp";
 import SupportEngine from "../chat/SupportEngine";
 import Sendmail from "../components/Sendmail";
 import Title from "../components/Title";
+import { Link } from "react-router-dom";
 
 function Home( ) {
   useEffect(()=>{ 
@@ -21,15 +22,16 @@ function Home( ) {
   return (
     <div>
       <MyBanner   />
-      <Divider height="6rem" />
-      <Title color={"brown"} mobile={false} title={"Researchs Field"} />
-
+      <Divider  height="2rem" />
+      <Divider  height="2rem" />
+      <Divider id="sec77"  height="2rem" />
+      <Title    color={"brown"} mobile={false} title={"Researchs Field"} />
       <IconCards />
-
       <Divider height="6rem" />
       <SimpleDrawer />
       <Title color={"brown"} mobile={false} title={"Their Smile Matters"} />
-      <Swipper />
+      <Link to="/MedReports">
+      <Swipper /></Link>
       <Divider height="5rem" />
       <Articles />
 

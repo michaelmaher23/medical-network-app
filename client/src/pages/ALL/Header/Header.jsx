@@ -58,13 +58,16 @@ function Header({ onClick, onClick2 }) {
       <div
         style={{ backgroundColor: show ? "rgba(12, 33, 19, 0.096)" : "white" }}
         className="NAVBAR"
-      >
+      ><Link to="/" style={{textDecoration:'none'}}>
         <div className="LOGO">
+          
           <img alt='' className="IMG" src={logo} />
-        </div>
-
+        </div></Link>
+ 
         <div className="INPTCONTAINER">
-          <input className="INPT" placeholder="Search ..." />
+       <Link to="/MedProducts" style={{textDecoration:'none'}}>
+          <input className="INPT" placeholder="Products..." />
+      </Link>
           <span className="ICN">
             <FontAwesomeIcon icon={faSearch} />
           </span>
@@ -83,14 +86,14 @@ function Header({ onClick, onClick2 }) {
 
         <div className="LNKS">
           <Link
-            to="/"
+            to="/Field/Heart"
             style={{ color: show ? "white" : "#8f6420" }}
             className="menu"
           >
             Heart Care
           </Link>
           <Link
-            to="/"
+            to="/Field/Mental_Health"
             style={{ color: show ? "white" : "#8f6420" }}
             className="menu"
           >
@@ -98,10 +101,10 @@ function Header({ onClick, onClick2 }) {
           </Link>
         </div>
         <div className="AUTH">
-          <Link to="/" className="LINK">
+          <Link to="/account/register" className="LINK">
             <button className="auth">SIGN UP</button>
           </Link>
-          <Link to="/" className="LINK">
+          <Link to="/account/login" className="LINK">
             <button className="auth">SIGN IN</button>
           </Link>
         </div>

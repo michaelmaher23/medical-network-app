@@ -27,6 +27,8 @@
     "graphql-tag": "^2.12.6",
     "graphql-tools": "^8.2.13",
     "http": "^0.0.1-security",
+    "js-cookie": "^3.0.1",
+    "js-cookies": "^1.0.4",
     "jsonwebtoken": "^8.5.1",
     "mailgun-js": "^0.22.0",
     "mailslurp-client": "^15.12.3",

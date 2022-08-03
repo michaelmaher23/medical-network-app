@@ -40,18 +40,7 @@ const formOrder = {
 
       options: { min: 4 },
     }},
-    country: {
-      isLength: {
-        errorMessage: " should be at least 2 chars long",
-  
-        options: { min: 2 },
-      }},
-      region: {
-        isLength: {
-          errorMessage: " should be at least 1 chars long",
-    
-          options: { min: 1 },
-        }},
+     
         date: {
           isLength: {
             errorMessage: " should be Date",

@@ -48,15 +48,16 @@ const FormComponent = () => {
     ok:1,
     message:"",
     data: {
-   
+   country:"",
+   region:"",
       address: "",
       budget: "",
       email: "",
       firstName: "",
       lastName: "",
-      phone: "",  country:"",
+      
       date:"",
-    region:"",
+    
     },
     errors: {
       date:"",
@@ -67,7 +68,7 @@ const FormComponent = () => {
       lastName: "",
       phone: "",
       country:"",
-      region:"",
+   region:"",
     },
     steps: [{ label: "Checkout details" }, { label: "Order Complete" }],
     stepCount: 0,
@@ -85,7 +86,7 @@ const FormComponent = () => {
   const handleOnChange = ({ target }) => {
    
     const { data, errors,ok } = state;
- if(target.name!=="email"){
+ if(target.name!=="email"  ){
  target.value.length < 4
       ? (errors[target.name] = ` لا ينبغي ان يقل عن اربع احرف ${target.name} `)
       : (errors[target.name] = "");

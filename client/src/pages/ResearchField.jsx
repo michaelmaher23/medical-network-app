@@ -12,12 +12,22 @@ import image6 from "../images/image6.png";
 import Frame from "../images/Frame.svg";
 import "../pages/ResearchFiled.css";
 import 'antd/dist/antd.css';
+import Section from "../Sections/Section";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { listSectionDetails } from "../Redux/Actions/SectionsAction";
+
+
 function ResearchField() {
+  const {loading,error,details}=useSelector(state=>state.sections)
+  const {name}=useParams()
+  const dispatch=useDispatch()
   useEffect(()=>{ 
     window.scrollTo(0,0)
     window.history.scrollRestoration = 'manual'
-  
-  },[])
+
+   dispatch(listSectionDetails((name.trim())))
+  },[name,dispatch])
   
   useEffect(() => {
  
@@ -43,7 +53,8 @@ function ResearchField() {
 
   return (
     <>
-      <div
+    <Section  loading={loading} error={error} name={details?.name} pic={details?.pic}/>
+      {/*<div
         className=" "
         style={{
           backgroundImage: `url(${Frame})`,
@@ -113,7 +124,7 @@ function ResearchField() {
           }}
           src={Capture}
         />
-      </div>
+        </div>*/}
       <Container>
         <Row
           style={{
@@ -150,7 +161,7 @@ function ResearchField() {
                   className=" "
                   style={{ border: "none", width: "7rem" }}
                   id="inlineFormInputName"
-                  placeholder="Search Heart Care"
+                  placeholder={`Search ${details?.name}...`}
                 />
               </InputGroup>
             </Form>{" "}

@@ -1,29 +1,119 @@
-import { faUser, faLocationPin } from "@fortawesome/free-solid-svg-icons";
+import {  faLocationPin } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./cssprofile.css";
 import Status from "./my-account/Status.png";
 import Prof from "./my-account/Prof.png";
-import ist from "./my-account/ist.jpg";
 import Radio from "./my-account/Radio";
 import cloud from "./cloud.png";
-import {
-  getUserDetails,
-  register,
-  updateUserProfile,
-} from "../Redux/Actions/UserAction";
-import { WindowOutlined } from "@mui/icons-material";
+import { getUserDetails, updateUserForm, updateUserProfile } from "../Redux/Actions/UserAction";
 import axios from "axios";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+function Myprofile({ setR }) { 
+   const {id} =useParams() 
+    const dispatch = useDispatch();
+  useEffect(() => {  
+    dispatch(getUserDetails(id));
 
-function Myprofile({ setR }) {
-  const dispatch = useDispatch();
-
-  let selected = true;
-  const mydata = useSelector((state) => state.userLogin);
+  }, [dispatch,id]);
   const { Forms, loading, error } = useSelector((state) => state.forms);
-  const update = useSelector((state) => state.update);
 
+ 
+  const ad = useSelector((state) => state.userFormDetails);
+
+  const myprofile = useSelector((state) => state.userDetails);
+  const {user}=myprofile
+  const [user1, setUser1] = useState({ _id: user?._id });
+  let a
+ 
+
+ 
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setUser1({ ...user1, _id: user._id, [name]: value });
+    console.log(user1);
+    
+
+  };
+  const [start, setStart] = useState(true);
+  useEffect(() => {
+    dispatch(updateUserProfile(user1));
+  
+    setUser1({ _id: user._id });
+  }, [!!start]);
+  const update = useSelector((state) => state.update);
+  const navigate=useNavigate()
+  const funct2 = (e) => {
+   e.preventDefault()
+ 
+   dispatch(updateUserForm(user1))
+  
+ 
+ 
+
+
+}
+  
+  
+
+  const [image, setImage] = useState("");
+  const onImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      let img = e.target.files[0];
+      const data = new FormData();
+      data.append("file", img);
+      axios.post("http://localhost:5000/image", data).then((res) => {
+        if (res.status == 200)
+          dispatch(
+            updateUserProfile({ photo: img.name, _id: user._id })
+          );
+        setImage(URL.createObjectURL(img));
+      });
+    }
+  };
+  const [show, setShow] = useState(true);
+
+  const [reset, setReset] = useState({
+    password: "",
+    repeat: "",
+    message: "",
+    successmessage: "",
+  });
+  function validateSignupForm(e) {
+    e.preventDefault();
+    if (reset.password.length < 8) {
+      setReset({ ...reset, message: "Password too short", successmessage: "" });
+    } else if (reset.password != reset.repeat) {
+      setReset({
+        password: "",
+        repeat: "",
+        message: "Passwords don't match",
+        successmessage: "",
+      });
+    } else {
+      try {
+        if (reset.successmessage !== "Canceled Successfully") {
+          setShow(!show);
+          dispatch(
+            updateUserProfile({
+              _id: user._id,
+              password: reset.password,
+            })
+          );
+
+          setStart(!start);
+
+          console.log(update);
+
+          setReset({ successmessage: "Successfully Updated" });
+        }
+      } catch {
+        setReset({ successmessage: "error" });
+      }
+    }
+  }
   var countries = {
     AF: { name: "Afghanistan", phone: 93 },
     AX: { name: "Aland Islands", phone: 358 },
@@ -523,85 +613,6 @@ function Myprofile({ setR }) {
     { name: "Zambia", code: "ZM", phone: 260 },
     { name: "Zimbabwe", code: "ZW", phone: 263 },
   ];
-  const [user1, setUser1] = useState({ _id: mydata?.userInfo?._id });
-  const { user } = useSelector((state) => state.userDetails);
-  const onChange = (e) => {
-    const { name, value } = e.target;
-    setUser1({ ...user1, _id: mydata.userInfo._id, [name]: value });
-    console.log(user1)
-  };
-
-  const [start, setStart] = useState(false);
-  useEffect(() => {
-    dispatch(updateUserProfile(user1));
-    dispatch(register(user1));
-    setUser1({ _id: mydata?.userInfo?._id });
-  }, [!start]);
-
-  const funct = (e) => {
-    e.preventDefault();
-    setStart(!start);
-    window.location.href = "/medproducts";
-  };
-  const [show, setShow] = useState(true);
-
-  const [reset, setReset] = useState({
-    password: "",
-    repeat: "",
-    message: "",
-    successmessage: "",
-  });
-  function validateSignupForm(e) {
-    e.preventDefault();
-    if (reset.password.length < 8) {
-      setReset({ ...reset, message: "Password too short", successmessage: "" });
-    } else if (reset.password != reset.repeat) {
-      setReset({
-        password: "",
-        repeat: "",
-        message: "Passwords don't match",
-        successmessage: "",
-      });
-    } else {
-      try {
-        if (reset.successmessage !== "Canceled Successfully") {
-          setShow(!show);
-          dispatch(
-            updateUserProfile({
-              _id: mydata.userInfo._id,
-              password: reset.password,
-            })
-          );
-
-          setStart(!start);
-
-          console.log(update);
-
-          setReset({ successmessage: "Successfully Updated" });
-        }
-      } catch {
-        setReset({ successmessage: "error" });
-      }
-    }
-  }
-  const [image, setImage] = useState("");
-  const onImageChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      let img = e.target.files[0];
-      const data = new FormData();
-      data.append("file", img);
-      axios.post("https://medicalprojectnet.herokuapp.com/image", data).then((res) => {
-        if (res.status == 200)
-          dispatch(
-            updateUserProfile({ photo: img.name, _id: mydata?.userInfo?._id })
-          );
-        setImage(URL.createObjectURL(img));
-      });
-    }
-  };
-  useEffect(() => {
-    dispatch(getUserDetails(mydata?.userInfo?._id));
-  }, [mydata?.userInfo?._id]);
   return (
     <div
       style={{
@@ -627,19 +638,14 @@ function Myprofile({ setR }) {
             <div class="content">
               <div class="sub-content">
                 <h1>
-                  {mydata && mydata?.userInfo?.firstName
-                    ? mydata?.userInfo?.firstName
-                    : "Name"}
+                  {user && user?.firstName && user?.firstName}
                   &nbsp;
-                  {(user && user?.lastName) ||
-                    (mydata && mydata?.userInfo?.lastName
-                      ? mydata?.userInfo?.lastName
-                      : " ")}
+                  {user && user?.lastName && user?.lastName}
                 </h1>
                 <p>
                   @
-                  {mydata && mydata?.userInfo?.email
-                    ? (mydata?.userInfo?.email).split("@")[0]
+                  {user && user?.email && (user?.email).split("@")[0]
+                    ? (user?.email).split("@")[0]
                     : "Myaccount"}
                 </p>
                 <span>
@@ -650,17 +656,18 @@ function Myprofile({ setR }) {
                       : "MyLocation")}
                 </span>
               </div>
-              <div><label className="mylabel" for="fileinpt">
-                <img src={cloud} className="cloud" />
-                <input style={{opacity:'0'}}
-                  type="file"
-                  id="fileinpt"
-                  name="myImage"
-                  accept="image/png, image/jpg, image/gif, image/jpeg"
-
-                  onChange={(e) => onImageChange(e)}
-                /></label>
-                
+              <div>
+                <label className="mylabel" for="fileinpt">
+                  <img src={cloud} className="cloud" />
+                  <input
+                    style={{ opacity: "0" }}
+                    type="file"
+                    id="fileinpt"
+                    name="myImage"
+                    accept="image/png, image/jpg, image/gif, image/jpeg"
+                    onChange={(e) => onImageChange(e)}
+                  />
+                </label>
               </div>
             </div>
             <div className="secured55">
@@ -773,7 +780,7 @@ function Myprofile({ setR }) {
         </div>
 
         <div className="secondwrapper">
-          <form onSubmit={(e) => funct(e)} className="formaaa">
+          <form onSubmit={e=>funct2(e)} className="formaaa">
             <div className="back55"></div>
 
             <ul style={{ width: "100%" }} className="form_fields">
@@ -862,7 +869,6 @@ function Myprofile({ setR }) {
                   onChange={(e) => onChange(e)}
                   name="region"
                   className="inpt55"
-                  
                 >
                   <option style={{ color: "black" }} selected disabled>
                     -- Select Governorate
@@ -949,16 +955,19 @@ function Myprofile({ setR }) {
                 <span>*</span>
               </label>
 
-              <Radio   onChange={onChange} />
+              <Radio onChange={onChange} />
 
-              <button
+              <button 
+           onSubmit={e=>funct2(e)}
                 type="submit"
-                onSubmit={(e) => funct(e)}
+            
                 value="Update My Profile"
                 className="submit55"
               >
                 Update My Profile
               </button>
+      
+
             </ul>
           </form>
         </div>

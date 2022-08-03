@@ -6,14 +6,14 @@ import Home from "./pages/Home";
 import AuthLogin from "./pages/AuthLogin";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import C from "../src/images/C.png";
-import SupportAdmin from "./chat/SupportAdmin";
+ import SupportAdmin from "./chat/SupportAdmin";
 import Sendmail from "./components/Sendmail/index";
 import ResearchField from "./pages/ResearchField";
 import Article from "./pages/Article/Article";
 import ALL from "./pages/ALL/ALL";
 import A from "./pages/A";
 import B from "./pages/B";
+import C from "./pages/C";
 import Sidebar from "./pages/Sidebar";
 import Design from "./components/Design";  
 
@@ -24,13 +24,25 @@ import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
- 
+
+import Login from "./pages/my-account/Login";
+import Register from "./pages/my-account/Register";
+import MyPage from "./pages/my-account/MyPage";
+
+import Myaccount from "./pages/my-account/Done";
+import MyaccountUpdated from "./pages/my-account/Success";
+
   const theme = createTheme();
 
 
 function App(props) {
  
+useEffect(()=>{
 
+
+
+
+},[])
   let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
@@ -62,14 +74,19 @@ function App(props) {
         <div {...props} className="App">
      
           <Routes>
-            <Route element={<B />}>
-              <Route path="/field" element={<ALL />} />{" "}
-              <Route path="/R" element={<Sidebar />} />
-              <Route path="/DESIGN" element={<Design/>}/>
-              <Route path="/medproducts" element={<MyProducts  key={Date.now()} />}/>
-              <Route path="/medproducts/:name" element={<MedicalProducts  key={Date.now()}  />}/>
+          <Route element={<B />}>
+          <Route path="/field" element={<ALL />} />{" "}
+              <Route path="/MedReports" element={<Sidebar />} />
+              <Route path="/MedLandingPage" element={<Design/>}/>
+              </Route>
+            <Route element={<C />}>  
+              <Route path="/medproducts" element={<MyProducts  />}/>
+              <Route path="/medproducts/:name" element={<MedicalProducts   />}/>
               <Route path="/medproducts/checkout" element={<FormComponent/>}/>
-
+              <Route path="/account/:id/successfullyupdated" element={<MyaccountUpdated />}/>
+              <Route path="/account/:id" element={<Myaccount />}/>
+              <Route path="/account/login" element={<Login  />}/>
+              <Route path="/account/register" element={<Register  />}/>
              </Route>
             <Route element={<A />}>
               
@@ -78,7 +95,7 @@ function App(props) {
               <Route path="/signup" element={<Auth />} />
               <Route path="/main" element={<SupportAdmin />} />
               <Route path="/email" element={<Sendmail />} />
-              <Route path="/researchfield" element={<ResearchField />} />
+              <Route path="/Field/:name" element={<ResearchField />} />
               <Route path="/article" element={<Article />} />
             </Route>
           </Routes>

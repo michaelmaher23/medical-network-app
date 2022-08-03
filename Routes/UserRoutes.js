@@ -1,12 +1,14 @@
 const express = require("express");
+const Cookies = require("js-cookie");
 const nodemailer = require("nodemailer");
 const bcrypt = require("bcryptjs");
 var nodemailerTransport = require("nodemailer-mailgun-transport");
 const { protect, admin } = require("../MiddleWares/AuthMiddleware.js");
 const { errorHandler } = require("../MiddleWares/Error.js");
 const Formidable = require("formidable");
-
 const cloudinary = require("cloudinary");
+const jwt =require( "jsonwebtoken");
+
 const {
   generateToken,
   generateRefreshToken,
@@ -17,38 +19,35 @@ cloudinary.config({
   api_secret: "6TiV5eTnGSF8OnPIkyOn7ikyA3E",
 });
 const User = require("./../Models/UserModel.js");
+const { auth } = require("../MiddleWares/auth.js");
 const userRouter = express.Router();
-userRouter.get("/profile", async (req, res) => {
-  try{
-  const user = await User.findById(req.user._id);
-
-  if (user) {
-    res.json(user);
-  } else {
-    res.status(404);
-    throw new Error("User not found");
-  }
-} catch (err) {
-  errorHandler(err, req, res);
-}
-});
-
 userRouter.post("/login", async (req, res) => {
+  res.header("Content-Type", "application/json;charset=UTF-8");
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-
     if (user && (await user.matchPassword(password))) {
-      console.log(generateRefreshToken(user._id));
-      const token = generateToken(user._id);
-      res.cookie("/refreshToken", generateRefreshToken(user._id));
-      res.status(200).json({
-        _id: user._id,
-        email: user.email,
-        token: token,
-        lastName: user.lastName,
-        firstName: user.firstName,
-        refreshToken: generateRefreshToken(user._id),
+      const access_token = generateToken(user._id);
+      const refresh_token = generateRefreshToken(user._id);
+      await User.findOneAndUpdate(
+        { email },
+         { rf_Token: refresh_token } 
+      );
+      const data = await User.findOne({ email });
+      res.json({
+        _id: data._id,
+        email: data.email,
+        lastName: data.lastName,
+        firstName: data.firstName,
+        rf_Token: refresh_token,
+        access_token,
+        photo:data.photo
       });
     } else {
       res.status(401);
@@ -60,16 +59,23 @@ userRouter.post("/login", async (req, res) => {
 });
 userRouter.post("/social", async (req, res) => {
   try {
-    const { email, password, lastName, firstName, type } = req.body;
+    const { email, lastName, firstName, type } = req.body;
     const userExists = await User.findOne({ email });
     if (userExists) {
-      const token = generateToken(userExists._id);
-      res.status(201).json({
-        _id: userExists._id,
-        email: userExists.email,
-        lastName: lastName,
-        firstName: firstName,
-        token,
+      const access_token = generateToken(userExists._id);
+      const refresh_token = generateRefreshToken(userExists._id);
+      await User.findOneAndUpdate(
+        { email },
+         { rf_Token: refresh_token } 
+      );
+      const data = await User.findOne({ email });
+      res.json({
+        _id: data._id,
+        email: data.email,
+        lastName: data.lastName,
+        firstName: data.firstName,
+        rf_Token: refresh_token,
+        access_token
       });
     } else {
       const salt = await bcrypt.genSalt(10);
@@ -83,13 +89,20 @@ userRouter.post("/social", async (req, res) => {
         type,
       });
       if (user) {
-        const token = generateToken(user._id);
-        res.status(201).json({
-          _id: user._id,
-          email: user.email,
-          lastName: user.lastName,
-          firstName: user.firstName,
-          token,
+        const access_token = generateToken(user._id);
+        const refresh_token = generateRefreshToken(user._id);
+        await User.findOneAndUpdate(
+          { email },
+           { rf_Token: refresh_token } 
+        );
+        const data = await User.findOne({ email });
+        res.json({
+          _id: data._id,
+          email: data.email,
+          lastName: data.lastName,
+          firstName: data.firstName,
+          rf_Token: refresh_token,
+          access_token
         });
       }
     }
@@ -106,17 +119,26 @@ userRouter.post("/", async (req, res) => {
       if (userExists.type == "social") {
         const salt = await bcrypt.genSalt(10);
         const apassword = await bcrypt.hash(password, salt);
-        const modified = await User.findByIdAndUpdate(userExists._id, {
+ 
+        const modified = await User.findByIdAndUpdate({_id:userExists._id}, {
           $set: { password: apassword, type: "user" },
+     
         });
+        console.log(modified)
         if (modified) {
-          const token = generateToken(modified._id);
+          const access_token = generateToken(user._id);
+          const refresh_token = generateRefreshToken(user._id);
+          await User.findOneAndUpdate(
+            { email },
+             { rf_Token: refresh_token } 
+          );
           res.status(201).json({
             _id: modified._id,
             email: modified.email,
             lastName: modified.lastName,
             firstName: modified.firstName,
-            token,
+            rf_Token: refresh_token,
+            access_token:access_token,
             type,
           });
         }
@@ -134,7 +156,12 @@ userRouter.post("/", async (req, res) => {
         type,
       });
       if (user) {
-        const token = generateToken(user._id);
+        const access_token = generateToken(user._id);
+        const refresh_token = generateRefreshToken(user._id);
+        await User.findOneAndUpdate(
+          {email: user.email },
+           { rf_Token: refresh_token } 
+        );
         res.status(201).json({
           _id: user._id,
           repeat,
@@ -142,9 +169,10 @@ userRouter.post("/", async (req, res) => {
           password: user.password,
           lastName: user.lastName,
           firstName: user.firstName,
-          token,
+          rf_Token: refresh_token,
+          access_token:access_token,
         });
-        const auth = {
+        {/*const auth = {
           auth: {
             api_key: "key-70444548fb722dfeec8629dced53d7c4",
             domain: "sandboxa72f45c4c13440ee9480bebdc4166e75.mailgun.org",
@@ -246,7 +274,7 @@ style="font-family:Poppins,Arial,Helvetica,sans-serif;font-size:15px;color:#9d9d
               console.log(info);
             }
           }
-        );
+        );*/}
       } else {
         res.status(400);
         throw new Error("Invalid User Data");
@@ -257,119 +285,164 @@ style="font-family:Poppins,Arial,Helvetica,sans-serif;font-size:15px;color:#9d9d
   }
 });
 // PROFILE
-userRouter.get("/profile/:id", async (req, res) => {
-  const user = await User.findById(req.params.id);
-
-  if (user) {
-    res.json(user);
-  } else {
-    res.status(404);
-    throw new Error("User not found");
-  }
-});
-
-// UPDATE PROFILE
-userRouter.put("/profile", async (req, res) => {
-  
-      try{   
-  const user = await User.findById(req.body._id);
-  let updated;
-  if (user) {
-    if (req.body.photo) {
-      await cloudinary.v2.uploader.upload(
-        `./images/${req.body.photo}`,
-        { public_id: `${req.body.photo}` },
-        async function (error, result) {
-          if (result) {
-            console.log(result.url);
-            let updated;
-            updated = {
-              _id: req.body._id,
-              firstName: req.body.firstName || user.firstName,
-              lastName: req.body.lastName || user.lastName,
-              country: req.body.country || user.country,
-              region: req.body.region || user.region,
-              phone: req.body.phone || user.phone,
-              address: req.body.address || user.address,
-              photo: result.url,
-              msgs:( req?.body?.msgs?.length>3)?([...(user?.msgs),req.body.msgs]):(user.msgs),            };
-            const update = await User.findByIdAndUpdate(req.body._id, updated);
-            res.json(update);
-          }
-        }
-      );
+userRouter.get("/profile/:id",auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+    if (user) {
+      res.json(user);
     } else {
-      updated = {
-        _id: req.body._id,
-        $push: { msgs: req.body.msgs },
-        firstName: req.body.firstName || user.firstName,
-        lastName: req.body.lastName || user.lastName,
-        country: req.body.country || user.country,
-        region: req.body.region || user.region,
-        $set:{phone:req.body.phone},
-        address: req.body.address || user.address,
-      };
-      if (req.body.password) {
-        const salt = await bcrypt.genSalt(10);
-        const apassword = await bcrypt.hash(req.body.password, salt);
-        updated = { ...updated, password: apassword };
-      }
- 
-      const update = await User.findByIdAndUpdate(req.body._id, updated,
-        {
-          runValidators: true,
-        });
- 
-      
- 
-
-       
- 
- 
+      res.status(404);
+      throw new Error("User not found");
+    }
+  } catch (err) {
+    errorHandler(err, req, res);
+  }
+});
+userRouter.get("/form/:id",auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+    if (user) {
+      res.json(user);
+    } else {
+      res.status(404);
+      throw new Error("User not found");
+    }
+  } catch (err) {
+    errorHandler(err, req, res);
+  }
+});
+// UPDATE PROFILE
+userRouter.put("/profile",auth, async (req, res) => {
+  const user = await User.findById(req.user._id);
 
   
+    let updated;
+    if (user) {
+      if (req.body.photo) {
+        await cloudinary.v2.uploader.upload(
+          `./images/${req.body.photo}`,
+          { public_id: `${req.body.photo}` },
+          async function (error, result) {
+            if (result) {
+              console.log(result.url);
+              let updated;
+              updated = {
+                _id: req.body._id,
+                firstName: req.body.firstName || user.firstName,
+                lastName: req.body.lastName || user.lastName,
+                country: req.body.country || user.country,
+                region: req.body.region || user.region,
+                phone: req.body.phone || user.phone,
+                address: req.body.address || user.address,
+                photo: result.url,
+                msgs:
+                  req?.body?.msgs?.length > 3
+                    ? [...user?.msgs, req.body.msgs]
+                    : user.msgs,
+              };
+              const update = await User.findByIdAndUpdate(
+                req.body._id,
+                updated
+              );
+              console.log("done")
+              res.json(update);
+            }
+          }
+        );
+      } else {
+        updated = {
+          _id: req.body._id,
+          $push: { msgs: req.body.msgs },
+          firstName: req.body.firstName || user.firstName,
+          lastName: req.body.lastName || user.lastName,
+          country: req.body.country || user.country,
+          region: req.body.region || user.region,
+          $set: { phone: req.body.phone },
+          address: req.body.address || user.address,
+        };
+        if (req.body.password) {
+          const salt = await bcrypt.genSalt(10);
+          const apassword = await bcrypt.hash(req.body.password, salt);
+          updated = { ...updated, password: apassword };
+        }
+        const update = await User.findByIdAndUpdate(
+          req.body._id,
+          updated
+        );
+      console.log(update)
+
+        res.json(update);
+      }
+    } else {
+      res.status(404);
+      throw new Error("User not found");
     }
-  } else {
-    res.status(404);
-    throw new Error("User not found");
-  }
-
-
-          }catch (err  ) {
-            console.log(err)
-  errorHandler(err, req, res);
-}
+  
 });
+userRouter.put("/logout", async (req, res) => {
+  
+  try {
+  let updated =    
+{ rf_Token: "refresh" }
+  const update = await User.findByIdAndUpdate(req.body.id, updated); 
+  console.log(update)
+ 
+  } catch (err) {
+    console.log(err);
+    errorHandler(err, req, res);
+  }
+});
+
 
 // GET ALL USER ADMIN
-userRouter.get("/", protect, admin, async (req, res) => {
+userRouter.get("/allusers", async (req, res) => {
   const users = await User.find({});
-  res.json(users);
+  res.json(users);  
 });
-userRouter.get("/newaccesstoken", async (req, res) => {
-  const cookies = req.cookies;
-  if (!cookies?.jwt) return res.sendStatus(401);
-  const refreshToken = cookies.jwt;
+ userRouter.post("/reftoken", async (req, res) => {
+  const rf_token = req.body.rf_Token 
+ 
+  if (!rf_token) res.status(401).json({ msg: "Please login now!" });
+  const decoded = jwt.verify(rf_token, process.env.JWT_REFRESH_SECRET);
+  if (!decoded.id) res.status(404).json({ msg: "Please login now!" });
+  const user = await User.findById(decoded.id);
+  if (!user) res.status(500).json({ msg: "This account does not exist." });
 
-  const foundUser = await User.findOne({ refreshToken }).exec();
-  if (!foundUser) return res.sendStatus(403); //Forbidden
-  // evaluate jwt
-  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
-    if (err || foundUser.username !== decoded.username)
-      return res.sendStatus(403);
-    const roles = Object.values(foundUser.roles);
-    const accessToken = jwt.sign(
-      {
-        UserInfo: {
-          username: decoded.username,
-          roles: roles,
-        },
-      },
-      process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "30s" }
+const access_token = generateToken(user._id);
+const refresh_token = generateRefreshToken(user._id);
+     const update = await User.findByIdAndUpdate(
+      { _id: user._id },
+    {
+      rf_token: refresh_token,
+    }
     );
-    res.json({ accessToken });
+
+  console.log('camehere')
+  res.json({
+    access_token,
+    rf_token: refresh_token,
+    _id: user._id,
+    email: user.email,
+    lastName: user.lastName,
+    firstName: user.firstName,
   });
+
+
+
+
 });
 
+userRouter.get("/logout", auth, async (req, res) => {
+  if (!req.user) res.status(400).json({ msg: "Invalid Authentication." });
+
+
+  await User.findOneAndUpdate(
+    { _id: req.user._id },
+    {
+      rf_token: "",
+    }
+  );
+
+  res.json({ msg: "Logged out!" });
+});
 module.exports = userRouter;

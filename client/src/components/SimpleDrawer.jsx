@@ -49,7 +49,7 @@ export default function SimpleDrawer() {
   };
   const arrauth = [
     { text: "Help Center", icon: <MailIcon /> },
-    { text: <p>Join us</p>, icon: <MailIcon /> },
+    { text:    <Link style={{textDecoration:'none'}} to={`/signup`}><p style={{color:'brown'}}>Join us</p></Link>, icon: <Link style={{textDecoration:'none'}} to={`/signup`}><MailIcon /></Link> },
   ];
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -85,29 +85,31 @@ export default function SimpleDrawer() {
       <List>
         {ArrayofSections.map((i, index) => (
           <>
-            <ListItem disablePadding key={i.text}>
-              <ListItemButton
+              <div
                 style={{
-                  height: "4rem",
+                  padding:"2rem" ,
+                  height: "2rem",
                   color: "var(--main)",
-                  fontSize: "1.3rem",
+                 
+                  display: "flex",
+                  alignItems:"center"
                 }}
               >
                 <p className="iconafter"> {i.icon}</p>
-                <ListItemText
-                  primaryTypographyProps={{
+                <p
+                  style={{
                     color: "var(--main)",
 
                     marginLeft: ".4rem",
 
-                    fontSize: ".9rem",
+                    fontSize: ".94rem",
 
                     fontWeight: "600",
                   }}
-                  primary={i.text}
-                />
-              </ListItemButton>
-            </ListItem>{" "}
+                 
+                >{i.text}</p>
+              </div>
+            
           </>
         ))}
         <ListItemButton onClick={handleClick}>
