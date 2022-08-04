@@ -110,8 +110,8 @@ function Design() {
                 <div class="card-content">
                   <h2 class="card-title">Discover</h2>
                   <p class="card-excerpt">
-                    Discover a community of researchers and experts go with you
-                    to the next level.
+                     Discover a community of researchers and experts go with you
+                     to the next level.
                   </p>
                 </div>
               </a>
@@ -124,8 +124,8 @@ function Design() {
                 <div class="card-content">
                   <h2 class="card-title">Explore</h2>
                   <p class="card-excerpt">
-                    Explore new technologies, cures, and researches that make
-                    your choices much easier.
+                     Explore new technologies, cures, and researches that make
+                     your choices much easier.
                   </p>
                 </div>
               </a>

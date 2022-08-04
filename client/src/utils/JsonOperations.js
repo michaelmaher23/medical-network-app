@@ -56,7 +56,7 @@ async function Delete(URL) {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
-        "Access-Control-Allow-Origin": "http://localhost:3000",
+        "Access-Control-Allow-Origin": "https://medicalprojectnet.herokuapp.com",
         "Access-Control-Allow-Credentials": "true",
       },
     })

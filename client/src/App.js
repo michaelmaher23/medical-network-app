@@ -74,12 +74,12 @@ useEffect(()=>{
         <div {...props} className="App">
      
           <Routes>
-          <Route element={<B />}>
-          <Route path="/field" element={<ALL />} />{" "}
+              <Route element={<B />}>
+              <Route path="/field" element={<ALL />} /> 
               <Route path="/MedReports" element={<Sidebar />} />
               <Route path="/MedLandingPage" element={<Design/>}/>
               </Route>
-            <Route element={<C />}>  
+              <Route element={<C />}>  
               <Route path="/medproducts" element={<MyProducts  />}/>
               <Route path="/medproducts/:name" element={<MedicalProducts   />}/>
               <Route path="/medproducts/checkout" element={<FormComponent/>}/>

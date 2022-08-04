@@ -31,7 +31,8 @@ function Home( ) {
       <SimpleDrawer />
       <Title color={"brown"} mobile={false} title={"Their Smile Matters"} />
       <Link to="/MedReports">
-      <Swipper /></Link>
+      <Swipper />
+      </Link>
       <Divider height="5rem" />
       <Articles />
 
