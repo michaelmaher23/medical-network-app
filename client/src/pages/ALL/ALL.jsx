@@ -48,7 +48,7 @@ function ALL({ onClick, onClick2 }) {
           <Link to="/MedLandingPage" style={{textDecoration:'none'}}>
           <button className="btnheader">Who we are?</button></Link>
           <Link to="/MedProducts" style={{textDecoration:'none'}}>
-          <button className="btnheader"> Our Products</button></Link>
+          <button className="btnheader">Products</button></Link>
         </div>
       </div>
       <div
