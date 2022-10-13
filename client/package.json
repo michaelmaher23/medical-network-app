@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "proxy": "https://medicalprojectnet.herokuapp.com",
+  "proxy": "https://medicalnetworkapp.herokuapp.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

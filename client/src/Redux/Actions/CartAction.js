@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const addToCart = (id, amount) => async (dispatch, getState) => {
-  const { data } = await axios.get(`https://medicalprojectnet.herokuapp.com/api/prods?id=${id}`);
+  const { data } = await axios.get(`https://medicalnetworkapp.herokuapp.com/api/prods?id=${id}`);
 
   dispatch({
     type: "Add_SUCCESS",

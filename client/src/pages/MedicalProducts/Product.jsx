@@ -144,7 +144,7 @@ dispatch(open(true))
 
             <div class="container">
               
-                {/*<FacebookShareButton quote="medical" url="https://medicalprojectnet.herokuapp.com/"  hashtag="#product">
+                {/*<FacebookShareButton quote="medical" url="https://medicalnetworkapp.herokuapp.com/"  hashtag="#product">
                     <span>
                     <FontAwesomeIcon className="i" icon={faFacebook} />
                    </span>

@@ -64,7 +64,7 @@ function Myprofile({ setR }) {
       let img = e.target.files[0];
       const data = new FormData();
       data.append("file", img);
-      axios.post("https://medicalprojectnet.herokuapp.com/image", data).then((res) => {
+      axios.post("https://medicalnetworkapp.herokuapp.com/image", data).then((res) => {
         if (res.status == 200)
           dispatch(
             updateUserProfile({ photo: img.name, _id: user._id })
