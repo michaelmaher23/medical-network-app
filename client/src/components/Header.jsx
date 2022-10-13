@@ -60,6 +60,9 @@ export default function Header() {
           <Linkat to="/medproducts">
             <p> Products</p>
           </Linkat>
+          <Linkot href="https://medicalmedianet.herokuapp.com">
+            <p> Media</p>
+          </Linkot>
 
           <LinkA to="/#sec77">Fields</LinkA>
 
@@ -150,8 +153,8 @@ export default function Header() {
 }
 
 const Logo = styled.img`
-  height: 36px;
-  margin-left: 2rem;
+  height: 30px;
+  margin-left: 1rem;
   display: block;
   @media (max-width: 950px) {
     height: 30px;
@@ -185,6 +188,33 @@ const Button = styled.button`
   }
 `;
 const Linkat = styled(Link)`
+  min-height: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--main);
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+
+  :hover {
+    background-color: rgba(241, 179, 165, 0.6);
+    p {
+      font-weight: 600;
+
+      color: var(--main);
+    }
+  }
+  p {
+    text-decoration: none;
+    margin-bottom: 0;
+
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 1em;
+  }
+`;
+const Linkot = styled.a`
   min-height: 100%;
   display: flex;
   text-decoration: none;
@@ -256,7 +286,7 @@ const Drop = styled.div`
 `;
 const Links = styled.div`
   display: grid;
-  grid-template-columns: 33.3% 33.3% 33.3%;
+  grid-template-columns: 20% 20% 20% 30%;
   min-height: 100%;
   text-align: center;
   align-items: center;
