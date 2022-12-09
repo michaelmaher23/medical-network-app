@@ -40,7 +40,7 @@ const getLocalRefreshToken = () =>
 
   
   const instance = axios.create({
-    baseURL: "https://medicalprojectnet.herokuapp.com",
+    baseURL: "https://medicalprojectnet.vercel.app",
     headers: {
       "Content-Type": "application/json",
     },

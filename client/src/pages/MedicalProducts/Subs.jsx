@@ -13,7 +13,7 @@ function Subs() {
   }, []);
   async function fetchGreeting() {
     const response = await fetch(
-      "https://medicalprojectnet.herokuapp.com/graphql",
+      "https://medicalprojectnet.vercel.app/graphql",
       {
         method: "POST",
         headers: {
@@ -37,7 +37,7 @@ function Subs() {
 
   const sendData = async () => {
     await Post(
-      "https://medicalprojectnet.herokuapp.com/api/prods/postemail",
+      "https://medicalprojectnet.vercel.app/api/prods/postemail",
       { email }
     ).then((data) => {
       console.log(data);

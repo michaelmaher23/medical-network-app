@@ -3,7 +3,7 @@ import axios from "axios";
 export const formDetails = (data1) => async (dispatch) => {
   try {
     dispatch({ type: "FORM_DETAILS_REQUEST" });
-    const { data } = await axios.post(`https://medicalprojectnet.herokuapp.com/api/form/postform`,data1);
+    const { data } = await axios.post(`https://medicalprojectnet.vercel.app/api/form/postform`,data1);
     dispatch({ type: "FORM_DETAILS_SUCCESS", payload: data });
     console.log(data);
 
@@ -21,7 +21,7 @@ export const formDetails = (data1) => async (dispatch) => {
 export const listFormsbyEmail = (email) => async (dispatch) => {
   try {
     dispatch({ type: "FORMS_REQUEST" });
-    const { data } = await axios.get(`https://medicalprojectnet.herokuapp.com/api/form/getbyemail/${email}`);
+    const { data } = await axios.get(`https://medicalprojectnet.vercel.app/api/form/getbyemail/${email}`);
     dispatch({ type: "FORMS_SUCCESS", payload: data });
     console.log(data);
 

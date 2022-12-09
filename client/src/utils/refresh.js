@@ -8,7 +8,7 @@ export const refresh = async()=>{
         withCredentials: true,
       };
       const { data } = await axios.get(
-        `https://medicalprojectnet.herokuapp.com/api/users/newaccesstoken`,
+        `https://medicalprojectnet.vercel.app/api/users/newaccesstoken`,
         config
       );
       

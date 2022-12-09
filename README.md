@@ -9,7 +9,7 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [https://medicalprojectnet.herokuapp.com](https://medicalprojectnet.herokuapp.com) to view it in your browser.
+Open [https://medicalprojectnet.vercel.app](https://medicalprojectnet.vercel.app) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
