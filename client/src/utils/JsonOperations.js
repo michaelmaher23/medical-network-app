@@ -52,11 +52,11 @@ async function Post (URL, data1) {
 
 async function Delete(URL) {
   try {
-    fetch("https://medicalnetworkapp.herokuapp.com/api/prods/postemail", {
+    fetch("https://medicalprojectnet.herokuapp.com/api/prods/postemail", {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
-        "Access-Control-Allow-Origin": "https://medicalnetworkapp.herokuapp.com",
+        "Access-Control-Allow-Origin": "https://medicalprojectnet.herokuapp.com",
         "Access-Control-Allow-Credentials": "true",
       },
     })
