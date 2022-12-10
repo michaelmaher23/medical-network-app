@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js"
-    ,"buil":"cd client && npm install && npm run build"
-},
+    ,"post-build":"npm install --perfix client && cd client && npm run build --perfix client"
+   },
   "author": "",
   "license": "ISC",
   "dependencies": {
