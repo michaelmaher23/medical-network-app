@@ -1,0 +1,22 @@
+<svg width="2916" height="1063" viewBox="0 0 2916 1063" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_72_8)">
+<rect width="2916" height="1063" fill="url(#paint0_linear_72_8)"/>
+<ellipse cx="1311.5" cy="105.5" rx="120.5" ry="125.5" fill="#FFB7B7"/>
+<circle cx="640.5" cy="688.5" r="48.5" fill="#FFC1C1"/>
+<ellipse cx="100.5" cy="985" rx="223.5" ry="205" fill="#FF8080"/>
+<ellipse cx="285.5" cy="283" rx="137.5" ry="128" fill="#FCCACA"/>
+<ellipse cx="825" cy="473.5" rx="98" ry="91.5" fill="#FCCACA"/>
+<ellipse cx="825" cy="473.5" rx="98" ry="91.5" fill="#FCCACA"/>
+<ellipse cx="995" cy="810.5" rx="98" ry="91.5" fill="#FCCACA"/>
+<ellipse cx="1927" cy="268.5" rx="98" ry="91.5" fill="#FCCACA"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_72_8" x1="-211.63" y1="-122.43" x2="1496.81" y2="1004.15" gradientUnits="userSpaceOnUse">
+<stop stop-color="#C84F4F"/>
+<stop offset="1" stop-color="#C84F4F" stop-opacity="0"/>
+</linearGradient>
+<clipPath id="clip0_72_8">
+<rect width="2916" height="1063" fill="white"/>
+</clipPath>
+</defs>
+</svg>
