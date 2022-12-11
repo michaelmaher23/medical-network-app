@@ -1,0 +1,509 @@
+
+
+   @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&display=swap');
+   .tooltip77 {
+    position: relative;
+ 
+  }
+  
+  .tooltip77 .tooltiptext77 {
+    visibility: hidden;
+    width: 120px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(8, 4, 4);
+    box-shadow: .1px -1px 10px gray;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: -20px;
+    margin-left: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .tooltip77 .tooltiptext77::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    border-width: 5px;
+    border-style: solid;
+    
+    border-color: transparent transparent  rgb(255, 255, 255)   transparent;
+  }
+  
+  .tooltip77:hover .tooltiptext77 {
+    visibility: visible;
+    opacity: 1;
+  }
+  .tooltip77 .tooltiptext77:hover {
+    visibility: visible;
+    opacity: 1;
+  }
+
+
+body{
+ 
+   overflow-x: hidden;
+   background-image: url('./images/BackFace.svg');
+    background-size: 150px 150px ;
+   background-repeat:repeat;
+ background-origin: 0% 0%;
+ z-index:10;
+ background-position:20%  90%;
+ background-attachment: fixed;
+ 
+
+
+ 
+ 
+
+ }
+ 
+ 
+*{ 
+  
+   margin:0;
+  box-sizing: border-box;
+  padding: 0;
+  scroll-behavior: smooth;
+font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+
+.flexcolumn{
+  flex-direction: row;
+}
+
+:root {
+  --main: rgb(160, 53, 53)	;
+  --main2:rgb(255, 228, 228) ;
+  --chatwidth:90%;
+ 
+  
+}
+.grid{
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+}
+@media (max-width:600px){
+  .grid{
+    grid-template-columns:repeat(auto-fit,minmax(90vw,1fr));
+  }
+ 
+}
+ 
+
+  .header_middle .div1{
+    position:absolute;
+
+    min-width: 40vw;
+   background-color: rgb(255, 255, 255);
+    top:3.1rem;
+    left:0;
+    border-bottom-right-radius: 12px;
+    box-shadow: 0px 0px 6px grey;
+    border-top: none;
+    border-left:none;
+    padding: 1rem 2rem;
+    display: flex;
+
+    flex-wrap: wrap;
+
+}
+
+.div1 .item{
+ flex:8rem;
+ margin-left: 0;
+ padding-bottom: .6rem;
+ text-align: center;
+ padding-top: 10px;
+ border-radius: 6px;
+}
+.div1 .item:hover{
+background-color: var(--main2);
+color:var(--main);
+ }
+
+ .h{
+  width:100%;
+  margin:auto;
+  display: flex;
+  justify-content: center;
+  margin-top:1rem
+
+  
+}
+
+
+.bird {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/174479/bird-cells-new.svg);
+  background-size: auto 100%;
+  width: 88px;
+  filter: invert(95%) sepia(94%) saturate(708%) hue-rotate(293deg) brightness(89%) contrast(116%);
+  height:126px;
+
+  will-change: background-position;
+           animation-name: fly-cycle;
+           animation-timing-function: steps(10);
+           animation-iteration-count: infinite;
+}
+.bird--one {
+           animation-duration: 1.5s;
+           animation-delay: .5s;
+}
+ .bird p{
+  filter: invert(80%) ;
+ }
+
+
+
+.bird-container {
+  position: absolute;
+  top: 5%;
+  left: -10%;
+  transform: scale(0) translateX(-10vw);
+  will-change: transform;
+           animation-name: fly-right-one;
+           animation-timing-function: linear;
+           animation-iteration-count: infinite;
+}
+.bird-container--one {
+           animation-duration: 10s;
+           animation-delay: 0s;
+}
+
+
+ 
+.iconafter>*{
+
+  font-size: 1.2rem;
+  margin-right: .5rem;
+  color:var(--main);
+}
+
+.Articles-banner{
+  width: 97%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.Articles-banner h5{
+ 
+    border-radius: 20px;
+
+ 
+ }
+@media (max-width:700px){
+  .flexcolumn{
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
+  .Articles-banner{
+    justify-content: start;
+  }
+  .Articles-banner h5{
+    display:none;
+
+  }
+}
+
+
+
+ 
+
+
+
+
+
+
+.hidden{
+
+  position: fixed;
+  top: -80px;
+
+
+}
+
+
+.Modal {
+  position: absolute;
+  top: -2rem;
+  left: 7rem;
+  right: 7rem;
+height: 90vh;
+  
+  
+ 
+ 
+ }
+ .Modal button{
+  color:rgb(242, 236, 224);
+ bottom: 8rem;
+ width: 8rem;
+ margin-left: calc(25% - 4rem);
+ padding: .6rem 1rem;
+ color:var(--main);
+ background-color: #f5aaaa;
+  border:none;
+   
+  font-weight: 900;
+  font-size: 19px;
+ }
+ .Modal button:hover{
+   color:var(--main);
+ }
+@media(max-width:950px){
+
+
+   .imagemodal{
+     display:none;
+   }
+  .Modal{
+    background-image: url('./images//cccc.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+   
+    top:0rem;
+    left:0rem;
+    right:0rem;
+    bottom: 0rem;
+    font-size: 3rem;
+  }
+   .Modal button{
+  color:rgb(242, 236, 224);
+ bottom: 1rem;
+ width: 6rem;
+ margin-left: calc(50% - 3rem);
+ padding: .4rem .6rem;
+ color:var(--main);
+ background-color: #f5aaaa;
+  border:none;
+   
+  font-weight: 900;
+  font-size: 17px;
+   }
+ 
+
+}
+
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(105, 82, 82, 0.8);
+  z-index: 9;
+
+}
+
+.swipper{
+
+  z-index: 1;
+  cursor: pointer;
+
+}
+.block{
+  display:none;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+  .ce-my-message-bubble {
+    background-color: #7a39e0 !important;
+  }
+  
+  .ce-chat-title-text {
+    color: #7a39e0 !important;
+  }
+  
+  .ce-chat-subtitle-text {
+    color: #7a39e0 !important;
+    font-weight: 600;
+  }
+  
+  #ce-send-message-button {
+    position: relative !important;
+    bottom: 2px !important;
+    left: 1px !important;
+    background-color: #7a39e0 !important;
+  }
+  
+  .ce-my-message-timestamp {
+    color: #7a39e0 !important;
+  }
+  
+  .transition-3 {
+    transition: all 0.33s ease;
+    -webkit-transition: all 0.33s ease;
+    -moz-transition: all 0.33s ease;
+  }
+  
+  .transition-5 {
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+  }
+  .chathover{
+    
+    background-color: rgb(207, 200, 200);
+     border:5px solid rgb(255, 255, 255);
+  }
+  .chathover:hover{
+    border:7px solid rgb(240, 182, 182);
+
+    background-color: var(rgb(0, 0, 0));
+    cursor:pointer;
+  }
+ 
+
+ *::-webkit-scrollbar {
+    width: .9rem;
+  }
+   
+ *::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgb(223, 219, 219);
+  }
+   
+  *::-webkit-scrollbar-thumb {
+    background-color: #e1e1e1;
+    border-radius: 4px;
+    outline: none;
+  }
+  .buttonfooter{
+    font-weight: 600;
+    background-color: #961414;
+     color:rgb(255, 255, 255);
+     padding:.2rem ;border:2px solid var(--main); 
+   }
+   
+  
+.buttonfooter:hover{
+ background-color: #f5aaaa;
+  color:rgb(130, 20, 20);
+  border:2px solid var(--main);    padding:.2rem ;
+ box-sizing: border-box;
+}
+
+  @media  (max-height:250px){
+    .LIVESUPPORT{
+  
+  display: none;
+    }
+    .emailformchat{
+   margin-bottom: 0rem;
+    }
+    .avatar{
+
+
+      
+      display:none;
+    }
+  }
+  .background-image {
+
+  }
+  @media (max-width:700px){
+    .background-image {
+      background-image: url('./images/BackFace.svg');
+      background-size:700px 700px;
+      
+      background-repeat:repeat-y;
+       background-origin: 0% 0%;
+       
+      padding: 40px 0px;
+      margin: 40px 0px;
+    z-index:-10;
+    background-position:100%  100%;
+    
+    background-attachment: fixed;
+    }
+  }
+
+.footerGrid{
+  width: 100vw;
+  grid-template-columns: 50% 25% 25%;
+   margin-bottom: .3rem;
+  
+}
+.footerGrid >*{
+  margin-bottom: 2rem;
+  margin-right: 2rem;
+ 
+}
+@media (max-width:700px){
+  .footerGrid{
+  grid-template-columns:100%;}
+  .footerGrid:first-child{
+    margin-right: 0;
+  }
+ 
+
+
+   
+
+
+
+
+
+
+}
+
+

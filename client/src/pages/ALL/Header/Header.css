@@ -1,0 +1,195 @@
+.NAVBAR {
+  position: fixed !important;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 9999999;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding: 0.3rem;
+  z-index: 999999;
+  background-color: rgba(12, 33, 19, 0.13);
+  height: 3.6rem;
+
+  backdrop-filter: blur(5px);
+}
+
+.NAVBAR .LOGO {
+  flex: 15%;
+  background-color: #de9a340d;
+  backdrop-filter: plur(6px);
+}
+
+.NAVBAR .INPTCONTAINER {
+  flex: 29%;
+  background-color: rgba(218, 165, 32, 0.551);
+  line-height: 2.5rem;
+  border-radius: 25px;
+  margin-left: 1rem;
+}
+
+.NAVBAR .INPTCONTAINER .INPT {
+  border: none;
+  outline: none;
+  font-size: 1.05rem;
+  background-color: rgba(65, 16, 16, 0);
+  width: 16rem;
+  padding-left: 0.9rem;
+}
+
+.NAVBAR .INPTCONTAINER .INPT::placeholder {
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.NAVBAR .INPTCONTAINER .ICN {
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.NAVBAR .LNKS {
+  margin-left: 2rem;
+  flex: 27%;
+}
+
+.NAVBAR .LNKS .menu::after {
+  content: "";
+  position: absolute;
+  height: 8px;
+  top: -1.7rem;
+  left: 0;
+  width: 100%;
+  background-color: #f9a11b;
+}
+.NAVBAR .LNKS .menu {
+  font-size: 1.1rem;
+  position: relative;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.84);
+  font-weight: 800;
+  margin-right: 2rem;
+  text-decoration: none;
+}
+.NAVBAR .LNKS .menu:hover {
+  font-size: 1.1rem;
+  position: relative;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: #f9a11b;
+  font-weight: 800;
+  margin-right: 2rem;
+  text-decoration: none;
+}
+
+.NAVBAR .LNKS .menu:hover::after {
+  transition: all 0.3s linear;
+  content: " ";
+  position: absolute;
+  height: 8px;
+  top: -1.27rem;
+  left: 0;
+  width: 100%;
+  background-color: #f9a11b;
+}
+.button {
+  display: none;
+  z-index: 9999999;
+}
+.NAVBAR .AUTH {
+  flex: 18%;
+}
+
+.NAVBAR .AUTH .LINK {
+  text-decoration: none;
+}
+.NAVBAR .AUTH .auth {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: #f9a11b;
+  font-weight: 800;
+  margin-right: 2rem;
+}
+.NAVBAR .AUTH .auth:hover {
+  color: #f9a11b;
+}
+@media (max-width: 1000px) {
+  .NAVBAR {
+    align-items: center;
+
+    height: 5rem;
+    padding: 4.7rem 1.2rem 0.6rem 1.2rem;
+    flex-flow: wrap-reverse;
+    background-color: rgba(12, 33, 19, 0.442);
+    backdrop-filter: blur(0px);
+  }
+  .NAVBAR .LOGO {
+    display: none;
+  }
+
+  .NAVBAR .INPTCONTAINER {
+    margin-top: 0.4rem;
+    flex: 100%;
+    margin-inline: auto;
+    width: 7rem;
+    background-color: rgba(218, 165, 32, 0.551);
+    line-height: 2rem;
+
+    border-radius: 25px;
+    height: 2rem;
+  }
+  .NAVBAR .INPTCONTAINER .ICN {
+    float: right;
+    margin-right: 1rem;
+  }
+
+  .NAVBAR .LNKS {
+    display: none;
+  }
+  .NAVBAR .AUTH {
+    flex: 70%;
+  }
+  .NAVBAR .AUTH > * {
+    float: right;
+  }
+  .NAVBAR .AUTH .auth {
+    margin-right: 0.7rem;
+    font-size: 12px;
+  }
+
+  .NAVBAR .INPTCONTAINER .INPT {
+    font-size: 0.8rem;
+    background-color: rgba(65, 16, 16, 0);
+    width: 8rem;
+    padding-left: 0.5rem;
+  }
+
+  .button {
+    display: block;
+
+    flex: 30%;
+    color: #f9a11b;
+    z-index: 9999;
+  }
+
+  .button > * {
+    width: 16px;
+    height: 3px;
+    background-color: #f9a11b;
+    display: block;
+    margin-top: 3px;
+    z-index: 9999999999;
+    transition: all 0.3s linear;
+  }
+  .btna :first-child {
+    display: none;
+  }
+  .btna :nth-child(2) {
+    transform: rotate(45deg);
+  }
+  .btna :last-child {
+    transform: rotate(-45deg) translateY(-5px) translateX(4px);
+  }
+}

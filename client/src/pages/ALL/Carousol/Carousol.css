@@ -1,0 +1,18 @@
+.carousel .thumb,
+.control-dots {
+  display: none !important;
+}
+.carsol {
+  height: 17rem;
+}
+.carousel.carousel-slider:hover .control-arrow {
+  background: #f9a11b;
+}
+@media (max-width: 700px) {
+  .carousel {
+    height: 10rem;
+  }
+  .carsol {
+    height: 10rem;
+  }
+}

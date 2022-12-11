@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@500&display=swap');
+      @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600');
+
+
+.pagecss{
+    width:100vw;
+   
+    padding: 2rem 5rem;
+     
+    background-image: url("./Deco.svg");
+   
+   
+    font-family: Exo,sans-serif;
+    
+    
+     
+    
+    display: flex;
+align-items: center;
+    flex-direction: row;
+  justify-content: space-around;
+}
+
+ .img99{
+ 
+height: 16rem;
+ }
+ .container99 h5{
+    line-height: .8rem;
+    font-family: Exo,sans-serif;
+ } 
+ .container99 {
+   width:30rem;
+ 
+    height: 10rem;
+   background-color: rgba(236, 246, 242, 0.501);
+   border:8px soild rgb(115, 0, 255);
+   position: relative;
+   border-radius: 9px;
+   padding: 13px 12px; 
+   box-shadow: .3px 1px 15px rgb(123, 153, 128);
+ }
+.photo99{
+width:4.5rem;
+height: 4.5rem;
+border-radius:50% ;
+border-top-left-radius: 0;
+position: absolute;
+top: -.3rem;
+left: -.3rem;
+box-shadow: .3px 2px 4px rgba(65, 80, 68, 0.827);
+
+} 
+ .top99 { margin-left: 5rem;
+}
+ .name99{
+font-size: 15px;
+text-transform: uppercase;
+font-weight: bold;
+color:rgb(7, 58, 60);
+margin-bottom:10px;
+ text-shadow: .2px .2px 1px rgb(165, 203, 165);
+ } 
+ .location99{
+    font-size: 15px;
+    text-transform: capitalize;
+    font-weight: bold;
+    color:rgb(97, 97, 97)
+ } 
+ .phone99{
+    font-size: 14px;
+    text-transform: capitalize;
+    font-weight: bold;
+    color:rgb(58, 58, 58)
+ }
+ 
+ .footer99{
+   margin-top: 2rem;
+   display: flex;
+    align-items: flex-end;
+    padding-top: 13px;
+   justify-content: space-between;
+    border-top: 1px solid rgb(210, 198, 198);
+ } 
+ .right99{
+
+ } 
+ 
+ 
+ .left99{} 
+ .joinedat99{
+
+    font-size: 13px;
+    text-transform: capitalize;
+
+    color:rgb(91, 80, 80)
+ } 
+ 
+

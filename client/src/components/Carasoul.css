@@ -1,0 +1,61 @@
+
+
+:root{
+    --swiper-theme-color:rgb(8, 99, 76);
+}
+.swippercard{
+    height:fit-content;
+    width:95vw;
+    margin-top: 1rem;overflow: visible;
+    margin:auto;
+  
+
+}
+.swippercard  .swiper-button-next{
+    margin-right:4px;
+    color:transparent;
+}
+.swippercard .swiper-pagination  {
+    color:rgb(0, 0, 0);
+}
+
+.swippercard .swiper-horizontal>.swiper-pagination-bullets,.swippercard  .swiper-pagination-bullets.swiper-pagination-horizontal,.swippercard  .swiper-pagination-custom,.swippercard  .swiper-pagination-fraction{
+    bottom: -50px;
+}
+.swippercard .swiper-pagination-bullet{
+    width: 15px;
+    height: 15px;
+    border:2px solid rgb(29, 201, 13);
+}
+.swippercard .swiper-button-prev{
+    margin-left:4px;
+    color:transparent;
+}
+.y{
+    color:red;
+    display: none;
+}
+.swippercard .swiper-button-next::after ,.swippercard .swiper-button-prev::after {
+    margin:1rem;
+   
+  background: url("https://www.flaticon.com/svg/vstatic/svg/3916/3916949.svg?token=exp=1654774696~hmac=5d96874cd0556ba2f65f3ae45abc2f9a");
+  width:4rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+}
+.swippercard .swiper-button-prev::after   {
+    transform:   rotateY(180deg);
+    color:transparent; 
+   
+}
+
+
+
+@media (max-width:500px){
+    .swippercard{
+    height: fit-content;
+    width:90%;
+    margin: auto;
+    margin-top: 1rem;}
+}

@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Tajawal&display=swap");
+
+.headermain {
+  max-width: 34rem;
+  margin-top: 4.5rem;
+  margin-left: 3rem;
+  backdrop-filter: blur(1px);
+  padding-bottom: 0.9rem;
+  padding-left: 2rem;
+  border-radius: 23px;
+  background-color: rgba(12, 33, 19, 0.13);
+
+  backdrop-filter: blur(3px);
+}
+.biggest {
+  font-size: 36px;
+  color: white;
+  backdrop-filter: plur(13px);
+  margin-bottom: 1rem;
+}
+.smallest {
+  font-size: 20px;
+  color: white;
+}
+.btnheader {
+  width: 9.9rem;
+  height: 3rem;
+  border: 2px solid #f9a11b;
+  background-color: transparent;
+  border-radius: 25px;
+  color: white;
+  margin-right: 2rem;
+  font-size: 22px;
+  backdrop-filter: blur(1px);
+  background-color: rgba(240, 213, 213, 0.086);
+}
+
+.btnheader:hover {
+  width: 10rem;
+  height: 3rem;
+  border: 2px solid #f9a11b;
+  background-color: transparent;
+  border-radius: 25px;
+  color: rgb(104, 77, 77);
+  font-size: 22px;
+
+  background-color: #f9a11b;
+}
+
+.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+  position: relative;
+  display: flex;
+  font-family: "Tajawal", sans-serif;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  padding: 12px 16px;
+  color: rgba(58, 7, 7, 0.85);
+  line-height: 1.5715;
+  background-color: #f9a01b27;
+  cursor: pointer;
+  border-radius: 25px;
+  font-size: 15px;
+  border: 0;
+  outline: 0;
+  transition: all 0.3s, visibility 0s;
+}
+.ant-collapse-item {
+  border: 0;
+  outline: 0;
+  font-family: "Tajawal", sans-serif;
+}
+.ant-collapse {
+  border-radius: 8px;
+  background-color: #dc8c130e;
+  overflow: hidden;
+  border: 2px solid #f9a01b;
+}
+@media (max-width: 1000px) {
+  .imagepage {
+    height: 12rem;
+    margin-bottom: 2rem;
+    top: 5rem;
+    filter: blur(80px);
+  }
+  .headermain {
+    max-width: 93vw;
+    margin: auto;
+    margin-top: 6rem;
+padding-left: 1rem;
+    background-color: rgba(67, 71, 16, 0.478);
+
+    backdrop-filter: blur(7px);
+  }
+  .biggest {
+    font-size: 25px;
+    color: white;
+    backdrop-filter: plur(19px);
+    margin-bottom: 1rem;
+  }
+  .smallest {
+    font-size: 15px;
+    color: white;
+  }
+
+  .btnheader {
+    width: 10rem;
+    height: 2rem;
+    border: 2px solid #f9a11b;
+    background-color: transparent;
+    border-radius: 25px;
+    color: white;
+    font-size: 12px;
+    backdrop-filter: blur(1px);
+    margin-right: 1rem;
+    background-color: #f9a11b;
+  }
+
+  .btnheader:hover {
+    font-size: 10px;
+
+    border: 2px solid #36240a43;
+    background-color: transparent;
+    border-radius: 25px;
+    width: 12rem;
+    height: 2rem;
+
+    border-radius: 25px;
+    color: white;
+
+    backdrop-filter: blur(1px);
+
+    background-color: #f9a11b;
+  }
+
+  .ant-collapse > .ant-collapse-item > .ant-collapse-header {
+    position: relative;
+    display: flex;
+    font-family: "Tajawal", sans-serif;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    padding: 12px 16px;
+    color: rgba(58, 7, 7, 0.85);
+    line-height: 1.5715;
+    background-color: #f9a01b27;
+    cursor: pointer;
+    border-radius: 25px;
+    font-size: 13px;
+    border: 0;
+    outline: 0;
+    transition: all 0.3s, visibility 0s;
+  }
+  .ant-collapse-item {
+    border: 0;
+    outline: 0;
+    font-family: "Tajawal", sans-serif;
+  }
+  .ant-collapse {
+    border-radius: 8px;
+    background-color: #dc8c130e;
+    overflow: hidden;
+    border: 2px solid #f9a01b;
+  }
+}
