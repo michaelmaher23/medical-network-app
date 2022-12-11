@@ -64,7 +64,7 @@ function Myprofile({ setR }) {
       let img = e.target.files[0];
       const data = new FormData();
       data.append("file", img);
-      axios.post("http://localhost:3000/image", data).then((res) => {
+      axios.post("https://medical-network-app.onrender.com/image", data).then((res) => {
         if (res.status == 200)
           dispatch(
             updateUserProfile({ photo: img.name, _id: user._id })

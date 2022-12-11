@@ -17,7 +17,7 @@ import {
 export const listSectionDetails = (urlname) => async (dispatch) => {
   try {
     dispatch({ type: "SECTION_DETAILS_REQUEST" });
-    const { data } = await axios.get(`http://localhost:3000/api/sections/${urlname}`);
+    const { data } = await axios.get(`https://medical-network-app.onrender.com/api/sections/${urlname}`);
     dispatch({ type: "SECTION_DETAILS_SUCCESS", payload: data });
     console.log(data);
   } catch (error) {

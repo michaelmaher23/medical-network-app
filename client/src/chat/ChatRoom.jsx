@@ -45,7 +45,7 @@ function ChatRoom({ email }) {
   };
   useEffect(() => {}, [messages]);
   useEffect(() => {
-    const ENDPOINT = "medicalprojectnet.vercel.app/";
+    const ENDPOINT = "medical-network-app.onrender.com/";
     socket = io(ENDPOINT);
     socket.emit("join", email.trim().split(" ")[0]);
   }, [email]);

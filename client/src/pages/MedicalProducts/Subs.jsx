@@ -13,7 +13,7 @@ function Subs() {
   }, []);
   async function fetchGreeting() {
     const response = await fetch(
-      "http://localhost:3000/graphql",
+      "https://medical-network-app.onrender.com/graphql",
       {
         method: "POST",
         headers: {
@@ -37,7 +37,7 @@ function Subs() {
 
   const sendData = async () => {
     await Post(
-      "http://localhost:3000/api/prods/postemail",
+      "https://medical-network-app.onrender.com/api/prods/postemail",
       { email }
     ).then((data) => {
       console.log(data);

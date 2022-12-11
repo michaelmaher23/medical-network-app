@@ -8,7 +8,7 @@ export const refresh = async()=>{
         withCredentials: true,
       };
       const { data } = await axios.get(
-        `http://localhost:3000/api/users/newaccesstoken`,
+        `https://medical-network-app.onrender.com/api/users/newaccesstoken`,
         config
       );
       

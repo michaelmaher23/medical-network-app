@@ -52,11 +52,11 @@ async function Post (URL, data1) {
 
 async function Delete(URL) {
   try {
-    fetch("http://localhost:3000/api/prods/postemail", {
+    fetch("https://medical-network-app.onrender.com/api/prods/postemail", {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
-        "Access-Control-Allow-Origin": "http://localhost:3000",
+        "Access-Control-Allow-Origin": "https://medical-network-app.onrender.com",
         "Access-Control-Allow-Credentials": "true",
       },
     })
