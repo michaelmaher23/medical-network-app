@@ -60,7 +60,7 @@ export default function Header() {
           <Linkat to="/medproducts">
             <p> Products</p>
           </Linkat>
-          <Linkot href="https://medicalmedianet.herokuapp.com">
+          <Linkot href="https://med-fair.vercel.app">
             <p> Media</p>
           </Linkot>
 
